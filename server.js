@@ -16,16 +16,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Configure CORS to allow credentials and specify frontend origin
-app.use(
-  cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:3000",
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    exposedHeaders: ["set-cookie"],
-    maxAge: 600, // Cache preflight requests for 10 minutes
-  })
-);
+app.use(cors());
 
 // Improved IP address detection middleware
 app.use((req, res, next) => {

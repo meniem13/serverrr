@@ -56,7 +56,7 @@ app.get("/api", (req, res) => {
 });
 
 app.get("/api/create_book", createBookController);
-app.get("/api/add_name", addNameController);
+app.post("/api/add_name", addNameController);
 app.get("/api/create_book_details", createBookDetailsController);
 app.post("/api/create_user", createUserController);
 app.post("/api/get_user", getUserController);

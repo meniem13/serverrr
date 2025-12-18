@@ -9,6 +9,7 @@ import { createUserController } from "./controllers/userController.js";
 import { connection } from "./db.js";
 import cookieParser from "cookie-parser";
 import { getUserController } from "./controllers/getUser.js";
+import { addNameController } from "./controllers/nameController.js";
 
 const app = express();
 app.use(express.json());
@@ -55,6 +56,7 @@ app.get("/api", (req, res) => {
 });
 
 app.get("/api/create_book", createBookController);
+app.get("/api/add_name", addNameController);
 app.get("/api/create_book_details", createBookDetailsController);
 app.post("/api/create_user", createUserController);
 app.post("/api/get_user", getUserController);

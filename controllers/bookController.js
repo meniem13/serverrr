@@ -1,16 +1,11 @@
 import { connection } from "../db.js";
 
-export const createBookController = (req, res) => {
-  const user_id = req.cookies.user_mbookstore;
-  const q = "insert into books (user_id) values(?)";
+export const createBookController = async (req, res) => {
+  const query = "select * from meniem ";
 
-  connection.query(q, [user_id], (err, result) => {
-    try {
-      res.status(200).json("book created");
-    } catch (error) {
-      res.status(500).json("error creating user");
-    }
-  });
+  const [rows] = await connection.promise().execute(query);
+  console.log(rows);
+  res.json(rows);
 };
 
 export const createBookDetailsController = (req, res) => {

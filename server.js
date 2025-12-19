@@ -50,7 +50,6 @@ app.get("/api", async (req, res) => {
   const [rows] = await connection.promise().execute(query);
 
   res.status(200).json(rows);
-  f;
 });
 
 app.get("/api/create_book", createBookController);

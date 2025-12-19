@@ -41,9 +41,16 @@ app.post("/p", (req, res) => {
 });
 
 // Routes
-app.get("/api", (req, res) => {
+app.get("/api", async (req, res) => {
   res.cookie("test_cookie", "value"); // Example cookie for testing
-  res.send("Cookie has been set!");
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.setHeader("Access-Control-Allow-Methods", "GET,  OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  const query = "SELECT * FROM meniem";
+  const [rows] = await connection.promise().execute(query);
+
+  res.status(200).json(rows);
+  f;
 });
 
 app.get("/api/create_book", createBookController);

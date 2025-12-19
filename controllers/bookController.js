@@ -1,11 +1,23 @@
 import { connection } from "../db.js";
 
 export const createBookController = async (req, res) => {
-  const query = "select * from meniem ";
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
+  // ✅ PRE-FLIGHT HANDLER
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
+
+  if (req.method !== "GET") {
+    return res.status(405).json({ error: "Method not allowed" });
+  }
+
+  const query = "SELECT * FROM meniem";
   const [rows] = await connection.promise().execute(query);
-  console.log(rows);
-  res.json(rows);
+
+  res.status(200).json(rows);
 };
 
 export const createBookDetailsController = (req, res) => {

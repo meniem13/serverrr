@@ -20,14 +20,14 @@ app.use(cors());
 
 // Improved IP address detection middleware
 app.use((req, res, next) => {
-  const ip =
-    req.headers["x-forwarded-for"]?.split(",")[0] ||
-    req.headers["x-real-ip"] ||
-    req.socket.remoteAddress ||
-    req.ip;
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-  req.clientIp = ip;
-  console.log("Client IP:", ip);
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+
   next();
 });
 

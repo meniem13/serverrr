@@ -23,8 +23,13 @@ async function init() {
   app.get("/apias", async (req, res) => {
     try {
       const [rows] = await connection.execute("SELECT * FROM meniem");
-      console.log("Query result:", rows);
-      res.json(rows);
+
+      return new Response(JSON.stringify(rows), {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*", // allow all for testing
+        },
+      });
     } catch (err) {
       console.error("DB error:", err);
       res.status(500).json({ error: "Database error" });

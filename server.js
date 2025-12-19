@@ -20,7 +20,7 @@ async function init() {
 
   console.log("MySQL connected!");
 
-  app.get("/api/create_book", async (req, res) => {
+  app.get("/apias", async (req, res) => {
     try {
       const [rows] = await connection.execute("SELECT * FROM meniem");
       console.log("Query result:", rows);
